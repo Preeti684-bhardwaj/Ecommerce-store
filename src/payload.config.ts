@@ -15,11 +15,14 @@ import ProductCategoryAttributes from './collections/Products/ProductCategory'
 import ProductAttributes from './collections/Products/Product'
 
 export default buildConfig({
+  serverURL:process.env.PAYLOAD_PUBLIC_EXTERNAL_SERVER_URL,
   admin: {
     user: Users.slug,
     bundler: webpackBundler(),
   },
   editor: slateEditor({}),
+  cors:process.env.WHITELIST_ORIGINS?process.env.WHITELIST_ORIGINS.split(','):[],
+  csrf:process.env.WHITELIST_ORIGINS?process.env.WHITELIST_ORIGINS.split(','):[],
   collections: [
     Users,
     StoreAttributes,
